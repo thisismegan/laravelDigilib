@@ -7,12 +7,28 @@ use App\Detail_transaksi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Category;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin/home');
+        $categories = Category::all();
+
+
+        $grafik = DB::table('detail_transaksi')
+            ->join('books', 'detail_transaksi.book_id', '=', 'books.id')
+            ->join('categories', 'books.category_id', '=', 'categories.id')
+            ->select('detail_transaksi.*', 'books.*', 'categories.*')
+            ->get();
+
+
+        $buku = Book::all()->count();
+        $user = User::all()->count();
+        $kembali = Detail_transaksi::where(['status' => 1])->count();
+        $dipinjam  = Detail_transaksi::where(['status' => 0])->count();
+        return view('admin/home', compact('dipinjam', 'kembali', 'user', 'buku', 'categories', 'grafik'));
     }
 
     public function borrows()

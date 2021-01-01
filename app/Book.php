@@ -37,4 +37,9 @@ class Book extends Model
     {
         return $this->hasMany(Detail_transaksi::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

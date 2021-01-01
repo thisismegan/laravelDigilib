@@ -37,7 +37,8 @@ class TransaksiController extends Controller
                 'transaksi_id' => $transaksi->id,
                 'book_id'      => $borrow->book_id,
                 'tgl_pinjam'   => date('Y-m-d'),
-                'tgl_kembali'  => date('Y-m-d', strtotime('+7days'))
+                'tgl_kembali'  => date('Y-m-d', strtotime('+7days')),
+                'status'       => 0
             ]);
         }
         $borrow = Borrow::where('user_id', $id);

@@ -30,6 +30,14 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>Kategori</label>
+                    <select name="category_id" class="form-control select2bs4" style="width: 100%;">
+                        @foreach ($categories as $row)
+                        <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>Nama Penulis</label>
                     <select name="author_id" class="form-control select2bs4" style="width: 100%;">
                         @foreach ($author as $row)

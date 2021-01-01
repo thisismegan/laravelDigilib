@@ -27,6 +27,15 @@
                     <input type="text" class="form-control" name="title" placeholder="Masukkan Judul Buku" value="{{ $book->title }}">
                 </div>
                 <div class="form-group">
+                    <label>Kategori Buku</label>
+                    <select name="category_id" class="form-control select2bs4" style="width: 100%;">
+                        <option value="{{ $book->category_id }}">{{ $book->category->category_name}}</option>
+                        @foreach ($categories as $row)
+                        <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>Nama Penulis</label>
                     <select name="author_id" class="form-control select2bs4" style="width: 100%;">
                         <option value="{{ $book->author_id }}">{{ $book->author->name}}</option>
